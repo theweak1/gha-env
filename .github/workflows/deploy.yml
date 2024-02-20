@@ -14,9 +14,9 @@ jobs:
   test:
     # This env is setup as job level
     env:
-    #INFO:
-    # This is not an appropiate way to tu user and password ENV variables with workflows
-      MONGODB_CLUSTER_ADDRESS: cluster0.mcalwku.mongodb.net 
+      #INFO:
+      # This is not an appropiate way to tu user and password ENV variables with workflows
+      MONGODB_CLUSTER_ADDRESS: cluster0.mcalwku.mongodb.net
       MONGODB_USERNAME: gh-user
       MONGODB_PASSWORD: cLiDqnDQyDO0mAlL
       PORT: 8080
@@ -39,12 +39,13 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Output information
-        run: echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+        run: |
+          echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Output information
-        run: |        
-         echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-         echo "MONGODB_DB_NAME: $MONGODB_DB_NAME" 
+        run: |
+          echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
+          echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
