@@ -12,10 +12,14 @@ env:
 
 jobs:
   test:
+    # Targetting specific environment,which may have different env variable values
+    # NOTE:
+    # If enviroment has protection rule, to only run if specific branch is target, even if workflow would be trigger by other branches, then the job targetting specific environment will not be run.
+    environment: testing
     # This env is setup as job level
     env:
       #INFO:
-      # This is not an appropiate way to tu user and password ENV variables with workflows
+      # Theproper way to project env data would be to set it up ask repository secrets like done here.
       MONGODB_CLUSTER_ADDRESS: cluster0.mcalwku.mongodb.net
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
